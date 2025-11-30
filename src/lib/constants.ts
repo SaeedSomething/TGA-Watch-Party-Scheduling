@@ -2,12 +2,21 @@ import { TaskItem } from "@/types/tasks";
 
 export const DEFAULT_TASKS: TaskItem[] = [
 	{ id: "snacks", label: "خوراکی میارم " },
-	{ id: "chairs", label: "Bring extra chairs" },
-	{ id: "pillows", label: "Bring cozy pillows/blankets" },
-	{ id: "drinks", label: "Handle drinks + ice" },
-	{ id: "screens", label: "Set up extra monitor/TV" },
-	{ id: "tech", label: "HDMI / cables / adapters" },
-	{ id: "playlist", label: "Music playlist for pre-show" },
+	{ id: "chairs", label: "صندلی یا وسیله برای نشستن میتون جور کنم" },
+	{
+		id: "pillows",
+		label: "پتو یا بالشت و وسیله خواب میتونم جور کنم برای اونایی که وسط ایونت خواب میرن :/",
+	},
+	{ id: "drinks", label: "نوشیدنی میارم" },
+	{ id: "liquor", label: "نوشیدنی میارم!" },
+	{ id: "screens", label: "پروژکتور میتونم جور کنم" },
+	{ id: "boardgame", label: "برودگیم میارم" },
+	{ id: "console", label: "کنسول میارم" },
+	{ id: "cable", label: "کابل Lan و مودم میارم CS بزنیم" },
+	{
+		id: "other",
+		label: "غیره (هر چی که فک میکنید به قشنگ تر شدن خاطره کمک میکنه)",
+	},
 ];
 
 export const LANDING_COPY = {

@@ -116,7 +116,7 @@ export function TaskForm({ onUpdate }: Props) {
 					<input
 						id="name"
 						className="input"
-						placeholder="حامد"
+						placeholder=""
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
