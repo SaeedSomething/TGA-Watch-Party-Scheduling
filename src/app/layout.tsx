@@ -3,7 +3,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "TGA Watch Party Planner",
-  description: "Coordinate snacks, rides, and vibes for The Game Awards night."
+  description: "Coordinate snacks, rides, and vibes for The Game Awards night.",
+  icons: {
+    icon: "/TGA_VERTICAL_LOGOTYPE.png"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
