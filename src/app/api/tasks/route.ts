@@ -2,9 +2,26 @@ import { neon } from "@neondatabase/serverless";
 import { NextResponse } from "next/server";
 import { TaskSubmission } from "@/types/tasks";
 
-const connectionString = process.env.NEON_DATABASE_URL;
-const insertSql = connectionString ? neon(connectionString) : null;
+type SqlClient = ReturnType<typeof neon> | null;
+
 const memoryTasks: TaskSubmission[] = [];
+const getSqlClient = (() => {
+  let client: SqlClient = null;
+  let attempted = false;
+  return (): SqlClient => {
+    if (attempted) return client;
+    attempted = true;
+    const connectionString = process.env.NEON_DATABASE_URL;
+    if (!connectionString) return null;
+    try {
+      client = neon(connectionString);
+    } catch (err) {
+      console.warn("Invalid NEON_DATABASE_URL provided, falling back to memory store", err);
+      client = null;
+    }
+    return client;
+  };
+})();
 
 type TaskRow = {
   id: string;
@@ -15,11 +32,12 @@ type TaskRow = {
 };
 
 async function ensureTable() {
-  if (!insertSql) {
+  const sql = getSqlClient();
+  if (!sql) {
     return;
   }
 
-  await insertSql`
+  await sql`
     CREATE TABLE IF NOT EXISTS tasks (
       id UUID PRIMARY KEY,
       name TEXT NOT NULL,
@@ -41,12 +59,13 @@ function formatRow(row: TaskRow): TaskSubmission {
 }
 
 export async function GET() {
-  if (!insertSql) {
+  const sql = getSqlClient();
+  if (!sql) {
     return NextResponse.json(memoryTasks.sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
   }
 
   await ensureTable();
-  const rows = (await insertSql`
+  const rows = (await sql`
     SELECT id, name, item, note, created_at
     FROM tasks
     ORDER BY created_at DESC;
@@ -74,13 +93,14 @@ export async function POST(request: Request) {
     createdAt: new Date().toISOString()
   };
 
-  if (!insertSql) {
+  const sql = getSqlClient();
+  if (!sql) {
     memoryTasks.unshift(submission);
     return NextResponse.json(submission, { status: 201 });
   }
 
   await ensureTable();
-  await insertSql`
+  await sql`
     INSERT INTO tasks (id, name, item, note)
     VALUES (${submission.id}, ${submission.name}, ${submission.item}, ${submission.note ?? null});
   `;
