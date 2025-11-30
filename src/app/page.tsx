@@ -68,7 +68,7 @@ export default function HomePage() {
 						<h1 className="hero-title">{LANDING_COPY.title}</h1>
 					</p>
 					<p
-						className="tag"
+						className="description"
 						style={{
 							margin: "0 auto 1rem",
 							width: "fit-content",
@@ -153,15 +153,21 @@ export default function HomePage() {
 			</section>
 
 			<section className="page-container" id="location">
+				<p
+					className="tag"
+					style={{
+						margin: "0 auto 1rem",
+						width: "fit-content",
+						display: "flex",
+						justifyContent: "center",
+					}}
+				>
+					<h2 className="hero-subtitle">
+						مکان :لادن ۲۲ پلاک 97 طبقه ۳{" "}
+					</h2>
+				</p>
 				<div className="glass-card map-card">
 					<div className="map-frame">
-						{/* <iframe
-							title="Event map"
-							src="https://maps.google.com/maps?q=0,0&z=12&output=embed"
-							loading="lazy"
-							referrerPolicy="no-referrer-when-downgrade"
-							allowFullScreen
-						/> */}
 						<iframe
 							title="map-iframe"
 							src="https://neshan.org/maps/iframe/places/_b1MT50J5TNa#c36.325-59.473-20z-0p/36.32470531780612/59.47305461491612"
