@@ -1,25 +1,30 @@
 {
-  "name": "tga-watch-party-scheduling",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "14.2.11",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "@neondatabase/serverless": "0.10.3"
-  },
-  "devDependencies": {
-    "@types/node": "22.9.1",
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
-    "eslint": "8.57.1",
-    "eslint-config-next": "14.2.11",
-    "typescript": "5.6.3"
-  }
+	"name": "tga-watch-party-scheduling",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+	},
+	"dependencies": {
+		"@neondatabase/serverless": "0.10.3",
+		"@opennextjs/cloudflare": "^1.14.0",
+		"next": "14.2.11",
+		"react": "18.3.1",
+		"react-dom": "18.3.1"
+	},
+	"devDependencies": {
+		"@types/node": "22.9.1",
+		"@types/react": "18.3.12",
+		"@types/react-dom": "18.3.1",
+		"eslint": "8.57.1",
+		"eslint-config-next": "14.2.11",
+		"typescript": "5.6.3",
+		"wrangler": "^4.51.0"
+	}
 }
