@@ -54,7 +54,7 @@ section {
   border-radius: 18px;
   padding: 1.75rem;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
+  /* backdrop-filter: blur(12px); */
 }
 
 .button-primary {
@@ -101,6 +101,7 @@ section {
 .textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.06);
+  color-scheme: dark;
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.8rem 1rem;
@@ -114,6 +115,11 @@ section {
 .textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(243, 78, 138, 0.2);
+}
+
+.select option {
+  background: #0f1321;
+  color: var(--text);
 }
 
 .grid {
@@ -206,4 +212,95 @@ section {
 
 .countdown strong {
   color: var(--accent-2);
+}
+
+.tga-status {
+  position: absolute;
+  inset: -8% 0 0;
+  display: grid;
+  place-items: center;
+  gap: 0.35rem;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.45));
+}
+
+.tga-status::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  max-width: 900px;
+  aspect-ratio: 1 / 1;
+  background:
+    radial-gradient(circle at 48% 42%, rgba(124, 243, 255, 0.25), transparent 55%),
+    radial-gradient(circle at 60% 60%, rgba(243, 78, 138, 0.22), transparent 58%);
+  filter: blur(40px);
+  opacity: 0.9;
+}
+
+.tga-status::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(6, 11, 22, 0.78), rgba(6, 11, 22, 0.42)),
+    url("/the-game-awards-2018-art-1030x579.jpg");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.38;
+  filter: saturate(0.85) contrast(1.05);
+  mask-image: radial-gradient(120% 120% at 50% 45%, rgba(0, 0, 0, 0.95), transparent 90%);
+  -webkit-mask-image: radial-gradient(120% 120% at 50% 45%, rgba(0, 0, 0, 0.95), transparent 90%);
+}
+
+.tga-status-text {
+  font-size: clamp(3rem, 12vw, 7.6rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+  background: linear-gradient(120deg, rgba(124, 243, 255, 0.55), rgba(243, 78, 138, 0.4));
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: blur(0.35px);
+  text-align: center;
+}
+
+.tga-status-sub {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.55), rgba(124, 243, 255, 0.5));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(124, 243, 255, 0.4);
+}
+
+.map-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.map-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56%;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.map-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  filter: grayscale(0.15) brightness(0.96);
 }

@@ -3,9 +3,16 @@ import { NextResponse } from "next/server";
 import { TaskSubmission } from "@/types/tasks";
 
 const connectionString = process.env.NEON_DATABASE_URL;
+const insertSql = connectionString ? neon(connectionString) : null;
 const memoryTasks: TaskSubmission[] = [];
 
-const insertSql = connectionString ? neon(connectionString) : null;
+type TaskRow = {
+  id: string;
+  name: string;
+  item: string;
+  note: string | null;
+  created_at: string;
+};
 
 async function ensureTable() {
   if (!insertSql) {
@@ -23,7 +30,7 @@ async function ensureTable() {
   `;
 }
 
-function formatRow(row: { id: string; name: string; item: string; note: string | null; created_at: string }): TaskSubmission {
+function formatRow(row: TaskRow): TaskSubmission {
   return {
     id: row.id,
     name: row.name,
@@ -39,11 +46,11 @@ export async function GET() {
   }
 
   await ensureTable();
-  const rows = await insertSql<{ id: string; name: string; item: string; note: string | null; created_at: string }>`
+  const rows = (await insertSql`
     SELECT id, name, item, note, created_at
     FROM tasks
     ORDER BY created_at DESC;
-  `;
+  `) as TaskRow[];
 
   const data = rows.map(formatRow);
   return NextResponse.json(data);
