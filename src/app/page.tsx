@@ -56,7 +56,7 @@ export default function HomePage() {
 						zIndex: 1,
 					}}
 				>
-					<p
+					<div
 						className="tag"
 						style={{
 							margin: "0 auto 1rem",
@@ -66,8 +66,8 @@ export default function HomePage() {
 						}}
 					>
 						<h1 className="hero-title">{LANDING_COPY.title}</h1>
-					</p>
-					<p
+					</div>
+					<div
 						className="description"
 						style={{
 							margin: "0 auto 1rem",
@@ -76,10 +76,19 @@ export default function HomePage() {
 							justifyContent: "center",
 						}}
 					>
-						<h2 className="hero-subtitle">
-							{LANDING_COPY.subtitle}
-						</h2>
-					</p>
+						<p
+							className="hero-subtitle"
+							dir="auto"
+							style={{
+								whiteSpace: "pre-line",
+								textAlign: "right",
+								lineHeight: 1.7,
+								unicodeBidi: "plaintext",
+							}}
+						>
+							{LANDING_COPY.subtitle.trim()}
+						</p>
+					</div>
 					{/* The Game Awards | Watch Party Control Room */}
 
 					<div
@@ -99,7 +108,7 @@ export default function HomePage() {
 					</div>
 				</div>
 				<div className="countdown" style={{ justifyContent: "center" }}>
-					<span>Countdown</span>
+					<span>پنحشنبه 20 آذر</span>
 					<strong>
 						{countdown.days}d {countdown.hours}h {countdown.minutes}
 						m {countdown.seconds}s
